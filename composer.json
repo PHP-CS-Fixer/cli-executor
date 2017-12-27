@@ -1,0 +1,27 @@
+{
+    "name": "keradus/cli-executor",
+    "type": "library",
+    "description": "CLI execution wrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dariusz Rumiński",
+            "email": "dariusz.ruminski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3.6 || ^7.0",
+        "symfony/process": "^2.3 | ^3 | ^4"
+    },
+    "require-dev": {
+        "maglnet/composer-require-checker": "^0.1.6",
+        "friendsofphp/php-cs-fixer": "^2.9"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": { "Keradus\\CliExecutor\\": "src/" }
+    }
+}
