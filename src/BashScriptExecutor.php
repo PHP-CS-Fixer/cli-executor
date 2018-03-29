@@ -11,8 +11,6 @@
 
 namespace Keradus\CliExecutor;
 
-use Symfony\Component\Process\Process;
-
 /**
  * @deprecated, use `\Keradus\CliExecutor\ScriptExecutor` instead
  */

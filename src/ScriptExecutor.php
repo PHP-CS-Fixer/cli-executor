@@ -46,8 +46,8 @@ final class ScriptExecutor
     private $tmpFilePath;
 
     /**
-     * @param string[] $scriptParts
-     * @param string   $cwd
+     * @param string[]  $scriptParts
+     * @param string    $cwd
      * @param ?string[] $scriptInit
      */
     public function __construct($scriptParts, $cwd, array $scriptInit = null)
@@ -65,8 +65,8 @@ final class ScriptExecutor
     }
 
     /**
-     * @param string[] $scriptParts
-     * @param string   $cwd
+     * @param string[]  $scriptParts
+     * @param string    $cwd
      * @param ?string[] $scriptInit
      *
      * @return self
