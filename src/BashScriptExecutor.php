@@ -19,7 +19,7 @@ final class BashScriptExecutor
     /**
      * @var ScriptExecutor
      */
-    private static $scriptExecutor;
+    private $scriptExecutor;
 
     /**
      * @param string[] $scriptParts
