@@ -13,6 +13,9 @@ namespace Keradus\CliExecutor;
 
 use Symfony\Component\Process\Process;
 
+/**
+ * @deprecated, use `\Keradus\CliExecutor\ScriptExecutor` instead
+ */
 final class BashScriptExecutor
 {
     /**
@@ -26,6 +29,7 @@ final class BashScriptExecutor
      */
     public function __construct($scriptParts, $cwd)
     {
+        @trigger_error('`\Keradus\CliExecutor\BashScriptExecutor` is deprecated, use `\Keradus\CliExecutor\ScriptExecutor` instead.', E_USER_DEPRECATED);
         $this->scriptExecutor = new ScriptExecutor($scriptParts, $cwd, array('#!/usr/bin/env bash', 'set -e', ''));
     }
 
