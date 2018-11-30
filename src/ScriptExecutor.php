@@ -71,7 +71,7 @@ final class ScriptExecutor
      *
      * @return self
      */
-    public static function create($scriptParts, $cwd, array $scriptInit = null)
+    public static function create(array $scriptParts, $cwd, array $scriptInit = null)
     {
         return new self($scriptParts, $cwd, $scriptInit);
     }
@@ -93,7 +93,7 @@ final class ScriptExecutor
             chmod($this->tmpFilePath, 0777);
             $command = './'.$tmpFileName;
 
-            $process = new Process($command, $this->cwd);
+            $process = new Process(array($command), $this->cwd);
             $process->run();
 
             $this->result = new CliResult(
