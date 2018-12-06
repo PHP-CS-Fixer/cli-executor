@@ -32,19 +32,18 @@ jobs:
             script:
                 - ./vendor/bin/php-cs-fixer fix -v --dry-run
                 - ./vendor/bin/composer-require-checker check composer.json
-                - ./vendor/bin/phpunit
 
         - &STANDARD_TEST_JOB
             stage: Test
-            php: 5.6
-            env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+            php: 7.0
             script:
                 - vendor/bin/phpunit || travis_terminate 1
 
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: 7.0
+            php: 5.6
+            env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
 
         -
             <<: *STANDARD_TEST_JOB
