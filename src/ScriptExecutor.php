@@ -96,7 +96,7 @@ final class ScriptExecutor
             if (method_exists(Process::class, 'fromShellCommandline')) {
                 $process = Process::fromShellCommandline($command, $this->cwd);
             } else {
-                $process = new Process(array($command), $this->cwd);
+                $process = new Process($command, $this->cwd);
             }
             $process->run();
 

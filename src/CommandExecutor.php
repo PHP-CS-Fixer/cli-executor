@@ -64,7 +64,7 @@ final class CommandExecutor
             if (method_exists(Process::class, 'fromShellCommandline')) {
                 $process = Process::fromShellCommandline($this->command, $this->cwd);
             } else {
-                $process = new Process(array($this->command), $this->cwd);
+                $process = new Process($this->command, $this->cwd);
             }
             $process->run();
 
