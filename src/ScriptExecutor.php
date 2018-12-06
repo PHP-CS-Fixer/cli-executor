@@ -93,7 +93,7 @@ final class ScriptExecutor
             chmod($this->tmpFilePath, 0777);
             $command = './'.$tmpFileName;
 
-            $process = new Process(array($command), $this->cwd);
+            $process = new Process($command, $this->cwd);
             $process->run();
 
             $this->result = new CliResult(
