@@ -93,7 +93,11 @@ final class ScriptExecutor
             chmod($this->tmpFilePath, 0777);
             $command = './'.$tmpFileName;
 
-            $process = new Process(array($command), $this->cwd);
+            if (method_exists(Process::class, 'fromShellCommandline')) {
+                $process = Process::fromShellCommandline($command, $this->cwd);
+            } else {
+                $process = new Process(array($command), $this->cwd);
+            }
             $process->run();
 
             $this->result = new CliResult(
