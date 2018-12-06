@@ -45,13 +45,8 @@ jobs:
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: 5.3.6
-            env: COMPOSER_FLAGS="--ignore-platform-reqs --prefer-stable --prefer-lowest"
-
-        -
-            <<: *STANDARD_TEST_JOB
-            stage: Test
             php: 5.6
+            env: COMPOSER_FLAGS="--ignore-platform-reqs --prefer-stable --prefer-lowest"
 
         -
             <<: *STANDARD_TEST_JOB
