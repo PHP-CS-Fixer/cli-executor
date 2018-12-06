@@ -71,7 +71,7 @@ final class ScriptExecutor
      *
      * @return self
      */
-    public static function create(array $scriptParts, $cwd, array $scriptInit = null)
+    public static function create($scriptParts, $cwd, array $scriptInit = null)
     {
         return new self($scriptParts, $cwd, $scriptInit);
     }
