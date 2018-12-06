@@ -61,7 +61,11 @@ final class CommandExecutor
     public function getResult($checkCode = true)
     {
         if (null === $this->result) {
-            $process = new Process($this->command, $this->cwd);
+            if (method_exists(Process::class, 'fromShellCommandline')) {
+                $process = Process::fromShellCommandline($this->command, $this->cwd);
+            } else {
+                $process = new Process(array($this->command), $this->cwd);
+            }
             $process->run();
 
             $this->result = new CliResult(
