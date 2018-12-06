@@ -11,12 +11,12 @@
     ],
     "require": {
         "php": "^5.3.6 || ^7.0",
-        "symfony/process": "^2.3 | ^3 | ^4"
+        "symfony/process": "^2.3 || ^3 || ^4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.9",
         "maglnet/composer-require-checker": "^0.1.6",
-        "phpunit/phpunit": "^7.4",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1",
         "symfony/phpunit-bridge": "^4.0"
     },
     "config": {
@@ -24,9 +24,13 @@
         "sort-packages": true
     },
     "autoload": {
-        "psr-4": { "Keradus\\CliExecutor\\": "src/" }
+        "psr-4": {
+            "Keradus\\CliExecutor\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "Keradus\\Tests\\": "tests/" }
+        "psr-4": {
+            "Keradus\\Tests\\": "tests/"
+        }
     }
 }
