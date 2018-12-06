@@ -36,6 +36,9 @@ jobs:
         - &STANDARD_TEST_JOB
             stage: Test
             php: 7.0
+            install:
+                - travis_retry composer update $DEFAULT_COMPOSER_FLAGS $COMPOSER_FLAGS
+                - composer info -D | sort
             script:
                 - vendor/bin/phpunit || travis_terminate 1
 
