@@ -61,6 +61,7 @@ final class CommandExecutor
     public function getResult($checkCode = true)
     {
         if (null === $this->result) {
+            // for symfony/process:^4.2
             if (method_exists(Process::class, 'fromShellCommandline')) {
                 $process = Process::fromShellCommandline($this->command, $this->cwd);
             } else {
