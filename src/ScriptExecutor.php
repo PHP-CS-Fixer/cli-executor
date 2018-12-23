@@ -93,6 +93,7 @@ final class ScriptExecutor
             chmod($this->tmpFilePath, 0777);
             $command = './'.$tmpFileName;
 
+            // for symfony/process:^4.2
             if (method_exists(Process::class, 'fromShellCommandline')) {
                 $process = Process::fromShellCommandline($command, $this->cwd);
             } else {
