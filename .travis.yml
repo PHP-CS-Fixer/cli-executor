@@ -1,7 +1,5 @@
 language: php
 
-sudo: false
-
 git:
     depth: 1
 
@@ -32,3 +30,34 @@ jobs:
             script:
                 - ./vendor/bin/php-cs-fixer fix -v --dry-run
                 - ./vendor/bin/composer-require-checker check composer.json
+
+        - &STANDARD_TEST_JOB
+            stage: Test
+            php: 7.0
+            install:
+                - travis_retry composer update $DEFAULT_COMPOSER_FLAGS $COMPOSER_FLAGS
+                - composer info -D | sort
+            script:
+                - vendor/bin/phpunit || travis_terminate 1
+
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: 5.6
+            env: COMPOSER_FLAGS="--ignore-platform-reqs --prefer-stable --prefer-lowest"
+
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: 7.1
+
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: 7.2
+
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: 7.3
+            env: COMPOSER_FLAGS="--ignore-platform-reqs"
