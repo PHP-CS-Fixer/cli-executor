@@ -29,4 +29,13 @@ class CommandExecutorTest extends TestCase
 
         $this->assertContains(basename(__FILE__), $cliResult->getOutput());
     }
+
+    public function testSimpleExecutionWithArray()
+    {
+        $scriptExecutor = CommandExecutor::create(['ls', '-l'], __DIR__);
+
+        $cliResult = $scriptExecutor->getResult();
+
+        $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+    }
 }
