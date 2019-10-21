@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 final class CommandExecutor
 {
     /**
-     * @var string
+     * @var string|array
      */
     private $command;
 
@@ -31,8 +31,8 @@ final class CommandExecutor
     private $result;
 
     /**
-     * @param string $command
-     * @param string $cwd
+     * @param string|array $command
+     * @param string       $cwd
      */
     public function __construct($command, $cwd)
     {
@@ -41,8 +41,8 @@ final class CommandExecutor
     }
 
     /**
-     * @param string $command
-     * @param string $cwd
+     * @param string|array $command
+     * @param string       $cwd
      *
      * @return self
      */
@@ -61,8 +61,7 @@ final class CommandExecutor
     public function getResult($checkCode = true)
     {
         if (null === $this->result) {
-            // for symfony/process:^4.2
-            if (method_exists(Process::class, 'fromShellCommandline')) {
+            if (\is_string($this->command) && method_exists(Process::class, 'fromShellCommandline')) {
                 $process = Process::fromShellCommandline($this->command, $this->cwd);
             } else {
                 $process = new Process($this->command, $this->cwd);
@@ -81,7 +80,7 @@ final class CommandExecutor
                 $this->result,
                 sprintf(
                     "Cannot execute `%s`:\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
-                    $this->command,
+                    $process->getCommandLine(),
                     $this->result->getCode(),
                     isset(Process::$exitCodes[$this->result->getCode()]) ? Process::$exitCodes[$this->result->getCode()] : 'Unknown exit code',
                     $this->result->getError(),

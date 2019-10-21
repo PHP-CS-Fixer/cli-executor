@@ -54,7 +54,7 @@ final class ScriptExecutor
     {
         $this->scriptParts = $scriptParts;
         $this->cwd = $cwd;
-        $this->scriptInit = null !== $scriptInit ? $scriptInit : array('#!/bin/sh', 'set -eu', '');
+        $this->scriptInit = null !== $scriptInit ? $scriptInit : ['#!/bin/sh', 'set -eu', ''];
     }
 
     public function __destruct()
@@ -93,12 +93,7 @@ final class ScriptExecutor
             chmod($this->tmpFilePath, 0777);
             $command = './'.$tmpFileName;
 
-            // for symfony/process:^4.2
-            if (method_exists(Process::class, 'fromShellCommandline')) {
-                $process = Process::fromShellCommandline($command, $this->cwd);
-            } else {
-                $process = new Process($command, $this->cwd);
-            }
+            $process = new Process([$command], $this->cwd);
             $process->run();
 
             $this->result = new CliResult(

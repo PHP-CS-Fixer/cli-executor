@@ -23,7 +23,7 @@ class ScriptExecutorTest extends TestCase
 {
     public function testSimpleExecution()
     {
-        $scriptExecutor = ScriptExecutor::create(array('ls'), __DIR__);
+        $scriptExecutor = ScriptExecutor::create(['ls'], __DIR__);
 
         $cliResult = $scriptExecutor->getResult();
 

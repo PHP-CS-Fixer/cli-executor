@@ -28,7 +28,7 @@ final class BashScriptExecutor
     public function __construct($scriptParts, $cwd)
     {
         @trigger_error('`\Keradus\CliExecutor\BashScriptExecutor` is deprecated, use `\Keradus\CliExecutor\ScriptExecutor` instead.', E_USER_DEPRECATED);
-        $this->scriptExecutor = new ScriptExecutor($scriptParts, $cwd, array('#!/usr/bin/env bash', 'set -e', ''));
+        $this->scriptExecutor = new ScriptExecutor($scriptParts, $cwd, ['#!/usr/bin/env bash', 'set -e', '']);
     }
 
     /**
