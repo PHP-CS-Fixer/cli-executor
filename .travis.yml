@@ -59,5 +59,10 @@ jobs:
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: 7.3
+            php: 7.4
+
+        -
+            <<: *STANDARD_TEST_JOB
+            stage: Test
+            php: nightly
             env: COMPOSER_FLAGS="--ignore-platform-reqs"
