@@ -27,7 +27,11 @@ class CommandExecutorTest extends TestCase
 
         $cliResult = $scriptExecutor->getResult();
 
-        $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+        if (\is_callable([$this, 'assertStringContainsString'])) {
+            $this->assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+        } else {
+            $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+        }
     }
 
     public function testSimpleExecutionWithArray()
@@ -36,6 +40,10 @@ class CommandExecutorTest extends TestCase
 
         $cliResult = $scriptExecutor->getResult();
 
-        $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+        if (\is_callable([$this, 'assertStringContainsString'])) {
+            $this->assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+        } else {
+            $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+        }
     }
 }
