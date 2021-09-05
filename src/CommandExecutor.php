@@ -34,9 +34,8 @@ final class CommandExecutor
 
     /**
      * @param array|string $command
-     * @param string       $cwd
      */
-    public function __construct($command, $cwd)
+    public function __construct($command, string $cwd)
     {
         $this->command = $command;
         $this->cwd = $cwd;
@@ -44,23 +43,16 @@ final class CommandExecutor
 
     /**
      * @param array|string $command
-     * @param string       $cwd
-     *
-     * @return self
      */
-    public static function create($command, $cwd)
+    public static function create($command, string $cwd): self
     {
         return new self($command, $cwd);
     }
 
     /**
-     * @param bool $checkCode
-     *
      * @throws ExecutionException
-     *
-     * @return CliResult
      */
-    public function getResult($checkCode = true)
+    public function getResult(bool $checkCode = true): CliResult
     {
         if (null === $this->result) {
             if (\is_string($this->command) && method_exists(Process::class, 'fromShellCommandline')) {
