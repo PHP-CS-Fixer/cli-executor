@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -19,31 +21,31 @@ use PHPUnit\Framework\TestCase;
  *
  * @internal
  */
-class CommandExecutorTest extends TestCase
+final class CommandExecutorTest extends TestCase
 {
-    public function testSimpleExecution()
+    public function testSimpleExecution(): void
     {
         $scriptExecutor = CommandExecutor::create('ls -l', __DIR__);
 
         $cliResult = $scriptExecutor->getResult();
 
         if (\is_callable([$this, 'assertStringContainsString'])) {
-            $this->assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+            static::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
         } else {
-            $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+            static::assertContains(basename(__FILE__), $cliResult->getOutput());
         }
     }
 
-    public function testSimpleExecutionWithArray()
+    public function testSimpleExecutionWithArray(): void
     {
         $scriptExecutor = CommandExecutor::create(['ls', '-l'], __DIR__);
 
         $cliResult = $scriptExecutor->getResult();
 
         if (\is_callable([$this, 'assertStringContainsString'])) {
-            $this->assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+            static::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
         } else {
-            $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+            static::assertContains(basename(__FILE__), $cliResult->getOutput());
         }
     }
 }

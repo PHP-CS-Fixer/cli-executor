@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -16,7 +18,7 @@ use Symfony\Component\Process\Process;
 final class CommandExecutor
 {
     /**
-     * @var string|array
+     * @var array|string
      */
     private $command;
 
@@ -31,7 +33,7 @@ final class CommandExecutor
     private $result;
 
     /**
-     * @param string|array $command
+     * @param array|string $command
      * @param string       $cwd
      */
     public function __construct($command, $cwd)
@@ -41,7 +43,7 @@ final class CommandExecutor
     }
 
     /**
-     * @param string|array $command
+     * @param array|string $command
      * @param string       $cwd
      *
      * @return self
