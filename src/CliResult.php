@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -28,38 +30,24 @@ final class CliResult
      */
     private $error;
 
-    /**
-     * @param int    $code
-     * @param string $output
-     * @param string $error
-     */
-    public function __construct($code, $output, $error)
+    public function __construct(int $code, string $output, string $error)
     {
         $this->code = $code;
         $this->output = $output;
         $this->error = $error;
     }
 
-    /**
-     * @return int
-     */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->code;
     }
 
-    /**
-     * @return string
-     */
-    public function getOutput()
+    public function getOutput(): string
     {
         return $this->output;
     }
 
-    /**
-     * @return string
-     */
-    public function getError()
+    public function getError(): string
     {
         return $this->error;
     }

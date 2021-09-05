@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -47,10 +49,9 @@ final class ScriptExecutor
 
     /**
      * @param string[]  $scriptParts
-     * @param string    $cwd
      * @param ?string[] $scriptInit
      */
-    public function __construct($scriptParts, $cwd, array $scriptInit = null)
+    public function __construct(array $scriptParts, string $cwd, array $scriptInit = null)
     {
         $this->scriptParts = $scriptParts;
         $this->cwd = $cwd;
@@ -66,24 +67,17 @@ final class ScriptExecutor
 
     /**
      * @param string[]  $scriptParts
-     * @param string    $cwd
      * @param ?string[] $scriptInit
-     *
-     * @return self
      */
-    public static function create($scriptParts, $cwd, array $scriptInit = null)
+    public static function create(array $scriptParts, string $cwd, array $scriptInit = null): self
     {
         return new self($scriptParts, $cwd, $scriptInit);
     }
 
     /**
-     * @param bool $checkCode
-     *
      * @throws ExecutionException
-     *
-     * @return CliResult
      */
-    public function getResult($checkCode = true)
+    public function getResult(bool $checkCode = true): CliResult
     {
         if (null === $this->result) {
             $tmpFileName = 'tmp-'.self::$tmpCounter++.'.sh';
@@ -109,7 +103,7 @@ final class ScriptExecutor
                 sprintf(
                     "Cannot execute `%s`:\n%s\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
                     $command,
-                    implode("\n", array_map(function ($line) { return "$ ${line}"; }, $tmpFileLines)),
+                    implode("\n", array_map(function ($line) { return "$ {$line}"; }, $tmpFileLines)),
                     $this->result->getCode(),
                     isset(Process::$exitCodes[$this->result->getCode()]) ? Process::$exitCodes[$this->result->getCode()] : 'Unknown exit code',
                     $this->result->getError(),

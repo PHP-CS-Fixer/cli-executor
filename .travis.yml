@@ -23,7 +23,7 @@ jobs:
     include:
         -
             stage: Static Code Analysis
-            php: 7.2
+            php: 7.1
             install:
                 - travis_retry composer update $DEFAULT_COMPOSER_FLAGS $COMPOSER_FLAGS
                 - composer info -D | sort
@@ -33,7 +33,7 @@ jobs:
 
         - &STANDARD_TEST_JOB
             stage: Test
-            php: 7.0
+            php: 7.2
             install:
                 - travis_retry composer update $DEFAULT_COMPOSER_FLAGS $COMPOSER_FLAGS
                 - composer info -D | sort
@@ -43,18 +43,13 @@ jobs:
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: 5.6
+            php: 7.1
             env: COMPOSER_FLAGS="--ignore-platform-reqs --prefer-stable --prefer-lowest"
 
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: 7.1
-
-        -
-            <<: *STANDARD_TEST_JOB
-            stage: Test
-            php: 7.2
+            php: 7.3
 
         -
             <<: *STANDARD_TEST_JOB
@@ -64,5 +59,4 @@ jobs:
         -
             <<: *STANDARD_TEST_JOB
             stage: Test
-            php: nightly
-            env: COMPOSER_FLAGS="--ignore-platform-reqs"
+            php: 8.0

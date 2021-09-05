@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -25,10 +27,7 @@ final class ExecutionException extends \RuntimeException
         $this->result = $result;
     }
 
-    /**
-     * @return CliResult
-     */
-    public function getResult()
+    public function getResult(): CliResult
     {
         return $this->result;
     }

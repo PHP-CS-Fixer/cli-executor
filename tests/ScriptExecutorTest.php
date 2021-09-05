@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -19,18 +21,18 @@ use PHPUnit\Framework\TestCase;
  *
  * @internal
  */
-class ScriptExecutorTest extends TestCase
+final class ScriptExecutorTest extends TestCase
 {
-    public function testSimpleExecution()
+    public function testSimpleExecution(): void
     {
         $scriptExecutor = ScriptExecutor::create(['ls'], __DIR__);
 
         $cliResult = $scriptExecutor->getResult();
 
         if (\is_callable([$this, 'assertStringContainsString'])) {
-            $this->assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+            static::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
         } else {
-            $this->assertContains(basename(__FILE__), $cliResult->getOutput());
+            static::assertContains(basename(__FILE__), $cliResult->getOutput());
         }
     }
 }

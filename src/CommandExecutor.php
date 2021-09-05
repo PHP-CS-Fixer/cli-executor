@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -16,7 +18,7 @@ use Symfony\Component\Process\Process;
 final class CommandExecutor
 {
     /**
-     * @var string|array
+     * @var array|string
      */
     private $command;
 
@@ -31,34 +33,26 @@ final class CommandExecutor
     private $result;
 
     /**
-     * @param string|array $command
-     * @param string       $cwd
+     * @param array|string $command
      */
-    public function __construct($command, $cwd)
+    public function __construct($command, string $cwd)
     {
         $this->command = $command;
         $this->cwd = $cwd;
     }
 
     /**
-     * @param string|array $command
-     * @param string       $cwd
-     *
-     * @return self
+     * @param array|string $command
      */
-    public static function create($command, $cwd)
+    public static function create($command, string $cwd): self
     {
         return new self($command, $cwd);
     }
 
     /**
-     * @param bool $checkCode
-     *
      * @throws ExecutionException
-     *
-     * @return CliResult
      */
-    public function getResult($checkCode = true)
+    public function getResult(bool $checkCode = true): CliResult
     {
         if (null === $this->result) {
             if (\is_string($this->command) && method_exists(Process::class, 'fromShellCommandline')) {

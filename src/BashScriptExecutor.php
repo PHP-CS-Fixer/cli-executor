@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of CLI Executor.
  *
@@ -23,9 +25,8 @@ final class BashScriptExecutor
 
     /**
      * @param string[] $scriptParts
-     * @param string   $cwd
      */
-    public function __construct($scriptParts, $cwd)
+    public function __construct(array $scriptParts, string $cwd)
     {
         @trigger_error('`\Keradus\CliExecutor\BashScriptExecutor` is deprecated, use `\Keradus\CliExecutor\ScriptExecutor` instead.', E_USER_DEPRECATED);
         $this->scriptExecutor = new ScriptExecutor($scriptParts, $cwd, ['#!/usr/bin/env bash', 'set -e', '']);
@@ -33,21 +34,16 @@ final class BashScriptExecutor
 
     /**
      * @param string[] $scriptParts
-     * @param string   $cwd
-     *
-     * @return self
      */
-    public static function create($scriptParts, $cwd)
+    public static function create(array $scriptParts, string $cwd): self
     {
         return new self($scriptParts, $cwd);
     }
 
     /**
      * @throws ExecutionException
-     *
-     * @return CliResult
      */
-    public function getResult()
+    public function getResult(): CliResult
     {
         return $this->scriptExecutor->getResult();
     }
