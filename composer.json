@@ -17,7 +17,7 @@
         "friendsofphp/php-cs-fixer": "^3.1",
         "maglnet/composer-require-checker": "^2 || ^3",
         "phpunit/phpunit": "^7.5.20 || ^8.5.14 || ^9.5",
-        "symfony/phpunit-bridge": "^5.3.7"
+        "symfony/phpunit-bridge": "^5.3.7 || ^6"
     },
     "config": {
         "optimize-autoloader": true,
