@@ -30,9 +30,9 @@ final class CommandExecutorTest extends TestCase
         $cliResult = $scriptExecutor->getResult();
 
         if (\is_callable([$this, 'assertStringContainsString'])) {
-            static::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+            self::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
         } else {
-            static::assertContains(basename(__FILE__), $cliResult->getOutput());
+            self::assertContains(basename(__FILE__), $cliResult->getOutput());
         }
     }
 
@@ -43,9 +43,9 @@ final class CommandExecutorTest extends TestCase
         $cliResult = $scriptExecutor->getResult();
 
         if (\is_callable([$this, 'assertStringContainsString'])) {
-            static::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
+            self::assertStringContainsString(basename(__FILE__), $cliResult->getOutput());
         } else {
-            static::assertContains(basename(__FILE__), $cliResult->getOutput());
+            self::assertContains(basename(__FILE__), $cliResult->getOutput());
         }
     }
 }
