@@ -103,7 +103,7 @@ final class ScriptExecutor
                 sprintf(
                     "Cannot execute `%s`:\n%s\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
                     $command,
-                    implode("\n", array_map(function ($line) { return "$ {$line}"; }, $tmpFileLines)),
+                    implode("\n", array_map(static function ($line) { return "$ {$line}"; }, $tmpFileLines)),
                     $this->result->getCode(),
                     isset(Process::$exitCodes[$this->result->getCode()]) ? Process::$exitCodes[$this->result->getCode()] : 'Unknown exit code',
                     $this->result->getError(),
