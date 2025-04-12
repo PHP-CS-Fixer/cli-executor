@@ -51,7 +51,7 @@ final class ScriptExecutor
      * @param string[]  $scriptParts
      * @param ?string[] $scriptInit
      */
-    public function __construct(array $scriptParts, string $cwd, array $scriptInit = null)
+    public function __construct(array $scriptParts, string $cwd, ?array $scriptInit = null)
     {
         $this->scriptParts = $scriptParts;
         $this->cwd = $cwd;
