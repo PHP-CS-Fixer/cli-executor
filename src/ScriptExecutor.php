@@ -51,7 +51,7 @@ final class ScriptExecutor
      * @param string[]  $scriptParts
      * @param ?string[] $scriptInit
      */
-    public function __construct(array $scriptParts, string $cwd, array $scriptInit = null)
+    public function __construct(array $scriptParts, string $cwd, ?array $scriptInit = null)
     {
         $this->scriptParts = $scriptParts;
         $this->cwd = $cwd;
@@ -69,7 +69,7 @@ final class ScriptExecutor
      * @param string[]  $scriptParts
      * @param ?string[] $scriptInit
      */
-    public static function create(array $scriptParts, string $cwd, array $scriptInit = null): self
+    public static function create(array $scriptParts, string $cwd, ?array $scriptInit = null): self
     {
         return new self($scriptParts, $cwd, $scriptInit);
     }
@@ -100,7 +100,7 @@ final class ScriptExecutor
         if ($checkCode && 0 !== $this->result->getCode()) {
             throw new ExecutionException(
                 $this->result,
-                sprintf(
+                \sprintf(
                     "Cannot execute `%s`:\n%s\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
                     $command,
                     implode("\n", array_map(static function ($line) { return "$ {$line}"; }, $tmpFileLines)),

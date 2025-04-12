@@ -72,7 +72,7 @@ final class CommandExecutor
         if ($checkCode && 0 !== $this->result->getCode()) {
             throw new ExecutionException(
                 $this->result,
-                sprintf(
+                \sprintf(
                     "Cannot execute `%s`:\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
                     $process->getCommandLine(),
                     $this->result->getCode(),

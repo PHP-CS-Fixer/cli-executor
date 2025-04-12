@@ -20,7 +20,7 @@ final class ExecutionException extends \RuntimeException
      */
     private $result;
 
-    public function __construct(CliResult $result, $message = '', $code = 0, \Exception $previous = null)
+    public function __construct(CliResult $result, $message = '', $code = 0, ?\Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
 
