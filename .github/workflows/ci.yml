@@ -13,7 +13,7 @@ jobs:
             matrix:
                 include:
                     -   php: "7.4"
-                        COMPOSER_FLAGS: "--ignore-platform-reqs --prefer-stable --prefer-lowest"
+                        COMPOSER_FLAGS: "--prefer-stable --prefer-lowest"
                     -   php: "8.0"
                     -   php: "8.1"
                     -   php: "8.2"
