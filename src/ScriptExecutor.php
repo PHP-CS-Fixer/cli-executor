@@ -69,7 +69,7 @@ final class ScriptExecutor
      * @param string[]  $scriptParts
      * @param ?string[] $scriptInit
      */
-    public static function create(array $scriptParts, string $cwd, array $scriptInit = null): self
+    public static function create(array $scriptParts, string $cwd, ?array $scriptInit = null): self
     {
         return new self($scriptParts, $cwd, $scriptInit);
     }
