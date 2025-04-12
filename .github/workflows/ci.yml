@@ -1,0 +1,51 @@
+name: CI
+
+on:
+    - pull_request
+    - push
+
+jobs:
+    tests:
+        name: "PHP ${{matrix.php}}"
+        runs-on: "ubuntu-24.04"
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    -   php: "7.4"
+                        COMPOSER_FLAGS: "--ignore-platform-reqs --prefer-stable --prefer-lowest"
+                    -   php: "8.0"
+                    -   php: "8.1"
+                    -   php: "8.2"
+                    -   php: "8.3"
+        steps:
+            -   name: Checkout source
+                uses: actions/checkout@v4
+            -   name: PHP setup
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, log_errors_max_len=0
+            -   name: "Update composer dependencies"
+                run: composer update -o --no-interaction --no-progress ${{ matrix.COMPOSER_FLAGS }}
+            -   name: Tests
+                env:
+                    PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
+                run: vendor/bin/phpunit
+    sca:
+        name: Static Code Analysis
+        runs-on: 'ubuntu-24.04'
+        env:
+            php-version: '7.1'
+        steps:
+            -   name: Checkout source
+                uses: actions/checkout@v4
+            -   name: PHP setup
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, log_errors_max_len=0
+            -   name: "Update composer dependencies"
+                run: composer update -o --no-interaction --no-progress ${{ matrix.COMPOSER_FLAGS }}
+            -   name: "composer-require-checker"
+                run: vendor/bin/composer-require-checker check composer.json
