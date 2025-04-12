@@ -13,7 +13,7 @@ jobs:
             matrix:
                 include:
                     -   php: "7.4"
-                        COMPOSER_FLAGS: "--ignore-platform-reqs --prefer-stable --prefer-lowest"
+                        COMPOSER_FLAGS: "--prefer-stable --prefer-lowest"
                     -   php: "8.0"
                     -   php: "8.1"
                     -   php: "8.2"
@@ -37,7 +37,7 @@ jobs:
         name: Static Code Analysis
         runs-on: 'ubuntu-24.04'
         env:
-            php-version: '7.1'
+            php-version: '7.4'
         steps:
             -   name: Checkout source
                 uses: actions/checkout@v4
