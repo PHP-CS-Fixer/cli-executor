@@ -14,8 +14,8 @@
         "symfony/process": "^5.4 || ^6.4 || ^7.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.72",
-        "maglnet/composer-require-checker": "^4.15.0",
+        "friendsofphp/php-cs-fixer": "^3.75",
+        "maglnet/composer-require-checker": "^3.8 || ^4",
         "phpunit/phpunit": "^9.6.22 || ^10.5.45 || ^11.5.12"
     },
     "config": {
