@@ -100,7 +100,7 @@ final class ScriptExecutor
         if ($checkCode && 0 !== $this->result->getCode()) {
             throw new ExecutionException(
                 $this->result,
-                sprintf(
+                \sprintf(
                     "Cannot execute `%s`:\n%s\nCode: %s\nExit text: %s\nError output: %s\nDetails:\n%s",
                     $command,
                     implode("\n", array_map(static function ($line) { return "$ {$line}"; }, $tmpFileLines)),
