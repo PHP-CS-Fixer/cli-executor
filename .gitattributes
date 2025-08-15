@@ -1,3 +1,7 @@
+/.* export-ignore
+/phpunit.xml.dist export-ignore
+/tests/ export-ignore
+
 *       text=auto eol=lf
 *.php   text whitespace=blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,tabwidth=4 diff=php
 *.json  text whitespace=blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,tabwidth=4
