@@ -19,6 +19,7 @@ jobs:
                     -   php: "8.2"
                     -   php: "8.3"
                     -   php: "8.4"
+                        composer-stability: beta
         steps:
             -   name: Checkout source
                 uses: actions/checkout@v4
@@ -27,6 +28,9 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, log_errors_max_len=0
+            -   name: Configure Composer minimum-stability
+                if: matrix.composer-stability
+                run: composer config minimum-stability ${{ matrix.composer-stability }}
             -   name: "Update composer dependencies"
                 run: composer update -o --no-interaction --no-progress ${{ matrix.COMPOSER_FLAGS }}
             -   name: Tests
