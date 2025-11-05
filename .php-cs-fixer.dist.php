@@ -12,9 +12,8 @@ EOF;
 return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules(array(
-      '@PHP7x1Migration' => true,
-      '@PHP7x1Migration:risky' => true,
-      '@PHPUnit7x5Migration:risky' => true,
+      '@auto' => true,
+      '@auto:risky' => true,
       '@PhpCsFixer' => true,
       '@PhpCsFixer:risky' => true,
       // 'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']], // one should use PHPUnit built-in method instead
